@@ -500,15 +500,28 @@
   }
 
   /* ---------- regência ---------- */
-  .conductor-card{
-    display:grid; grid-template-columns:1fr 1fr; align-items:stretch;
-    background:var(--color-forest-ink); overflow:hidden; min-height:38rem;
+  /* a imagem e o fundo verde ocupam a seção inteira, de ponta a ponta
+     (sem respeitar o grid), enquanto o texto fica alinhado à margem
+     esquerda da página dentro do .wrap-wide — igual ao padrão usado na
+     hero para o .cta-row. */
+  #regencia{
+    position:relative; overflow:hidden;
+    background:var(--color-forest-ink);
+    min-height:38rem; display:flex; flex-direction:column;
   }
-  .conductor-media{ position:relative; min-height:26rem; background:var(--color-obsidian); }
+  .conductor-media{
+    position:absolute; inset:0; left:50%;
+    background:var(--color-obsidian); z-index:0;
+  }
   .conductor-media img{ width:100%; height:100%; object-fit:cover; object-position:center 20%; display:block; }
+  #regencia .wrap-wide{
+    position:relative; z-index:1; width:100%; flex:1;
+    display:flex; flex-direction:column;
+    padding-top:3.6rem; padding-bottom:2.8rem;
+  }
   .conductor-text{
-    padding:3.6rem 3.2rem 2.8rem; display:flex; flex-direction:column;
-    align-items:flex-start; justify-content:flex-start;
+    max-width:min(30rem, 42%); flex:1;
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start;
   }
   .conductor-eyebrow{
     color:var(--color-lime-voltage); font-weight:600; font-size:.8rem;
@@ -521,7 +534,7 @@
   }
   .conductor-bio{
     font-family:"Source Serif 4", Georgia, serif;
-    color:var(--color-fog); font-size:1.05rem; line-height:1.7; margin:0; max-width:30rem;
+    color:var(--color-fog); font-size:1.05rem; line-height:1.7; margin:0;
   }
   .conductor-cta{ margin-top:auto; padding-top:3rem; }
   .btn-ghost-invert{
@@ -538,9 +551,10 @@
     .btn-ghost-invert:hover{ background:rgba(250,250,248,.08); border-color:var(--color-paper); }
   }
   @media (max-width:760px){
-    .conductor-card{ grid-template-columns:1fr; min-height:0; }
-    .conductor-media{ min-height:22rem; }
-    .conductor-text{ padding:2.2rem; }
+    #regencia{ min-height:0; }
+    .conductor-media{ position:relative; inset:auto; left:auto; width:100%; height:22rem; order:-1; }
+    #regencia .wrap-wide{ padding-top:0; }
+    .conductor-text{ max-width:100%; padding-top:2.2rem; }
     .conductor-cta{ padding-top:2.2rem; }
   }
 
@@ -1010,19 +1024,17 @@
           <svg viewBox="0 0 24 24" fill="none"><path d="M4 14c2-6 6-9 8-9s6 3 8 9M4 14c2 3 5 5 8 5s6-2 8-5" stroke="#163300" stroke-width="1.4"/></svg>
         </span>
       </div>
-      <div class="conductor-card">
-        <div class="conductor-media">
-          <img src="images/regente-rodrigo.jpg" alt="Retrato em preto e branco de Rodrigo de Moraes Firme, regente do Madrigal Vivace!, sorrindo e trajando terno com gravata borboleta" loading="lazy">
-        </div>
-        <div class="conductor-text">
-          <p class="conductor-eyebrow">Regente titular desde 2019</p>
-          <h3 class="conductor-name">Rodrigo de Moraes Firme</h3>
-          <p class="conductor-bio">Rodrigo de Moraes Firme é licenciado em Música pela Universidade Federal do Espírito Santo (UFES) e especialista em Educação Musical. Atua como educador social no Instituto João XXIII, professor de Arte na rede pública e regente do Madrigal Vivace desde 2019. Possui experiência em educação musical, regência coral, técnica vocal, musicalização infantil e juvenil e formação de cantores iniciantes e intermediários. Sua trajetória reúne atuação em projetos comunitários, escolas públicas e ações socioeducativas, desenvolvendo práticas voltadas à formação humana, ao trabalho coletivo e à democratização do acesso à música.</p>
-          <div class="conductor-cta">
-            <a class="btn-ghost-invert" href="#quem-somos">Conheça o grupo</a>
-          </div>
+      <div class="conductor-text">
+        <p class="conductor-eyebrow">Regente titular desde 2019</p>
+        <h3 class="conductor-name">Rodrigo de Moraes Firme</h3>
+        <p class="conductor-bio">Rodrigo de Moraes Firme é licenciado em Música pela Universidade Federal do Espírito Santo (UFES) e especialista em Educação Musical. Atua como educador social no Instituto João XXIII, professor de Arte na rede pública e regente do Madrigal Vivace desde 2019. Possui experiência em educação musical, regência coral, técnica vocal, musicalização infantil e juvenil e formação de cantores iniciantes e intermediários. Sua trajetória reúne atuação em projetos comunitários, escolas públicas e ações socioeducativas, desenvolvendo práticas voltadas à formação humana, ao trabalho coletivo e à democratização do acesso à música.</p>
+        <div class="conductor-cta">
+          <a class="btn-ghost-invert" href="#quem-somos">Conheça o grupo</a>
         </div>
       </div>
+    </div>
+    <div class="conductor-media">
+      <img src="images/regente-rodrigo.jpg" alt="Retrato em preto e branco de Rodrigo de Moraes Firme, regente do Madrigal Vivace!, sorrindo e trajando terno com gravata borboleta" loading="lazy">
     </div>
   </section>
 
